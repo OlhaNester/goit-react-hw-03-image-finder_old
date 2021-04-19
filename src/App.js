@@ -1,9 +1,10 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import Searchbar from './components/Searchbar';
 import ImageGallery from './components/ImageGallery';
-import Button from './components/Button';
-import Loader from './components/Loader';
-import './App.css';
+
+//import Button from './components/Button';
+//import Loader from './components/Loader';
+//import './App.css';
 
 class App extends Component {
   state = {};
@@ -12,9 +13,9 @@ class App extends Component {
       <div className="App">
         <Searchbar />
         <ImageGallery />
-        <Button>
+        {/* <Button>
           <Loader />
-        </Button>
+        </Button> */}
       </div>
     );
   }
