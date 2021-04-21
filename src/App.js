@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+
 import Searchbar from './components/Searchbar';
 import ImageGallery from './components/ImageGallery';
 
@@ -13,27 +13,20 @@ class App extends Component {
     filter: '',
     showModal: false,
     //isLoading: false,
+    //error: null,
   };
 
-  componentDidMount() {
-    const apiKey = '9657010-5b32a47b9f15e54eb73ad95a0';
-    const page = 1;
-    const qOnPage = 12;
-    axios
-      .get(
-        `https://pixabay.com/api/?q='trees'&page=${page}&key=${apiKey}&image_type=photo&orientation=horizontal&per_page=${qOnPage}`,
-      )
-      .then(response => {
-        console.log(response.data.hits);
-        this.setState({ images: response.data.hits });
-      })
-      .catch(error => console.error());
-  }
+  handleSearch = query => {
+    this.setState({ filter: query });
+  };
+
+  componentDidMount() {}
   render() {
+    const { images } = this.state;
     return (
       <div className="App">
-        <Searchbar />
-        <ImageGallery />
+        <Searchbar onSubmit={this.handleSearch} />
+        <ImageGallery images={images} />
         {/* <Button>
           <Loader />
         </Button> */}

@@ -4,10 +4,10 @@ import styles from './ImageGallery.module.css';
 
 //port PropTypes from 'prop-types';
 
-const ImageGallery = () => {
+const ImageGallery = ({ images }) => {
   return (
     <ul className={styles.ImageGallery}>
-      <ImageGalleryItem />
+      <ImageGalleryItem images={images} />
     </ul>
   );
 };

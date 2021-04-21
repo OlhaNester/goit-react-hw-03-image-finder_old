@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from './Modal.module.css';
 //import PropTypes from 'prop-types';
 
-const Modal = () => {
-  return (
-    <div className={styles.Overlay}>
-      <div className={styles.Modal}>
-        <img src="" alt="" />
+export default class Modal extends Component {
+  componentDidMount() {
+    console.log('Modal componentDidMount');
+  }
+  componentWillUnmount() {
+    console.log('Modal componentWillUnmount');
+  }
+  render() {
+    return (
+      <div className={styles.Overlay}>
+        <div className={styles.Modal}>
+          <img src="" alt="" />
+        </div>
       </div>
-    </div>
-  );
-};
-
-export default Modal;
+    );
+  }
+}
