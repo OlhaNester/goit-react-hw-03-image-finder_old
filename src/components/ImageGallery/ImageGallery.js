@@ -4,10 +4,20 @@ import styles from './ImageGallery.module.css';
 
 //port PropTypes from 'prop-types';
 
-const ImageGallery = ({ images }) => {
+const ImageGallery = ({ images, onClick }) => {
   return (
     <ul className={styles.ImageGallery}>
-      <ImageGalleryItem images={images} />
+      {images.map(({ id, webformatURL, tags, largeImageURL }) => {
+        return (
+          <ImageGalleryItem
+            id={id}
+            src={webformatURL}
+            alt={tags}
+            largeImageURL={largeImageURL}
+            onClick={() => onClick(largeImageURL)}
+          />
+        );
+      })}
     </ul>
   );
 };

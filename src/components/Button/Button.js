@@ -1,11 +1,12 @@
-//import React from 'react';
-//import styles from './Buttom.module.css';
+import React from 'react';
+import styles from './Button.module.css';
 
-const Button = () => {
-  return window.scrollTo({
-    top: document.documentElement.scrollHeight,
-    behavior: 'smooth',
-  });
+const Button = ({ onClick }) => {
+  return (
+    <button className={styles.button} type="button" onClick={onClick}>
+      Load More
+    </button>
+  );
 };
 
 export default Button;

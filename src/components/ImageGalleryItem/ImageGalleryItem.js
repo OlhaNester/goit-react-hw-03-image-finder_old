@@ -3,17 +3,19 @@ import styles from './ImageGalleryItem.module.css';
 
 //import PropTypes from 'prop-types';
 
-const ImageGalleryItem = ({ images }) => {
-  return images.map(({ id, webformatURL, tags }) => (
-    <li className={styles.ImageGalleryItem}>
+const ImageGalleryItem = ({ id, src, alt, largeImageURL, onClick }) => {
+  return (
+    <li className={styles.ImageGalleryItem} key={id}>
       <img
         id={id}
-        src={webformatURL}
-        alt={tags}
+        src={src}
+        alt={alt}
+        largeImageURL={largeImageURL}
+        onClick={onClick}
         className={styles.ImageGalleryItem_image}
       />
     </li>
-  ));
+  );
 };
 
 export default ImageGalleryItem;

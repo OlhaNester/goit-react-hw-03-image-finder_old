@@ -9,14 +9,16 @@ import Modal from './components/Modal';
 import Button from './components/Button';
 import Loader from './components/Loader';
 
-//import './App.css';
+import styles from './App.css';
 
 class App extends Component {
   state = {
     images: [],
     page: 1,
     filter: '',
-    // showModal: false,
+    showModal: false,
+    largeImage: '',
+
     // isLoading: false,
     //error: null,
   };
@@ -26,10 +28,12 @@ class App extends Component {
       this.fetchImage();
     }
   }
-
+  //управляем запросом
   handleSearch = query => {
     this.setState({ filter: query, page: 1, images: [] });
   };
+
+  //получение ответа с бекэнда, и пушим массив с картинками
   fetchImage = () => {
     const { page, filter } = this.state;
     const options = {
@@ -44,44 +48,35 @@ class App extends Component {
     });
   };
 
+  // запись нового большого изображения в стейт
+  showLargeImage = url => {
+    this.setState({ largeImage: url });
+    this.toggleModal();
+  };
+
+  //закрытие/открытие модального окна
   toggleModal = () => {
-    this.setState(({ showModal }) => ({ showModal: !showModal }));
+    this.setState(prevState => ({
+      showModal: !prevState.showModal,
+    }));
   };
 
   render() {
     const { images, showModal, isLoading } = this.state;
     return (
-      <div className="App">
+      <div className={styles.App}>
         <Searchbar onSubmit={this.handleSearch} />
-        {/* <ul>
-          {' '}
-          {images.map(({ id, webformatURL, tags }) => (
-            <li key={id}>
-              <img src={webformatURL} alt={tags} />
-            </li>
-          ))}
-        </ul>
-        <button type="button" onClick={this.fetchImage}>
-          {' '}
-          Загрузить еще
-        </button> */}
 
-        <ImageGallery images={images} />
-        {/* <button type="button" onClick={this.toggleModal}>
-          {' '}
-          Открыть модалку
-        </button>
+        <ImageGallery images={images} onClick={this.showLargeImage} />
+
         {showModal && (
-          <Modal onClose={this.toggleModal}>
-            <h1>Hello!</h1>
-            <button type="button" onClick={this.toggleModal}>
-              {' '}
-              Закрыть модалку
-            </button>
-          </Modal>
+          <Modal onClose={this.toggleModal} url={this.state.largeImage}></Modal>
         )}
+
         {isLoading && <Loader />}
-        {images.length > 0 && !isLoading && <Button />}   */}
+        {images.length > 0 && !isLoading && (
+          <Button onClick={this.fetchImage} />
+        )}
       </div>
     );
   }
