@@ -7,10 +7,9 @@ const ImageGalleryItem = ({ id, src, alt, largeImageURL, onClick }) => {
   return (
     <li className={styles.ImageGalleryItem} key={id}>
       <img
-        id={id}
         src={src}
         alt={alt}
-        largeImageURL={largeImageURL}
+        largeimageurl={largeImageURL}
         onClick={onClick}
         className={styles.ImageGalleryItem_image}
       />
